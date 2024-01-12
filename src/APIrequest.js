@@ -1,10 +1,8 @@
-
-const APIrequest = async(url='', optionsObj= null, errMsg=null) => {
+const APIrequest = async(url='', optionsObj=null, errMsg= null) => {
     try{
         const response = await fetch(url, optionsObj);
-        // if (!response.ok) {throw Error('Did not recieve expected data');         
-        const data = await response.json();
-      }
+        if (!response.ok) throw Error('Please reload app');         
+    }
       catch(err){
         errMsg = err.message;
       }

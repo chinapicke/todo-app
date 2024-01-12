@@ -41,8 +41,10 @@ getURL()
     console.log(newTodo)
     setList([...list, newTodo])
 
+
+    // post request allows to create a new request by adding new data to the json file  
     const postOptions= {
-      method:'POST',
+      method:'POST',                       
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify(newTodo)
     }
@@ -67,12 +69,27 @@ getURL()
    setList(removeSelected)
   }
 
-  const handleChecked = (id)=>{
+  const handleChecked = async (id)=>{
     // map through list items and checked that item.id matches the id that was clicked, if it does match change key value checked to the opposite of what it currently is; 
     // if it does not match, return item as it is
-    const checked = list.map((item)=> item.id === id ? {...item, checked:!item.checked} :{...item})
-    console.log(checked)
-    setList(checked)
+    const checked = list.map((item)=> item.id === id ? {...item, checked:!item.checked} :item);
+    setList(checked);
+
+    const updatedObj = checked.filter((item)=> item.id === id);
+
+    // had to change id numbers in json to string as json-server does not take in non-strings 
+
+    const updateOptionsRequest= {
+      method:'PATCH',                       
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({checked: updatedObj[0].checked})
+    };
+    console.log(updateOptionsRequest)
+    const requestURL = `${APIUrl}/${id}`;
+    const result = await APIrequest(requestURL, updateOptionsRequest);
+    if (result) setError(result);
+
+
   }
 
   return (
