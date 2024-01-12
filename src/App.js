@@ -12,8 +12,6 @@ function App() {
 
   const APIUrl = 'http://localhost:3500/list'
 
-
-// request API to display data in the json object 
   const getURL = async()=>{
     try{
       const response = await axios.get(APIUrl);
@@ -38,7 +36,9 @@ getURL()
 
   const handleAddTodo = async (input) =>{
         // check if there is length to list item, if there is then set it to a number next in the succession or define it as 1 
-    const id = list.length? list[list.length - 1].id + 1 : 1;
+       const newID = list.length + 1
+       console.log(newID)
+    const id = list.length? newID.toString() : "1";
     const newTodo = {id, todo:input, checked:false}
     console.log(newTodo)
     setList([...list, newTodo])

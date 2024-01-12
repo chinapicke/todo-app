@@ -1,9 +1,19 @@
 {
-  "list": [
-    {
-      "id": 1,
-      "todo": "Have fun",
-      "checked": false
-    }
-  ]
+    "list": [
+        {
+            "id": 1,
+            "todo": "Feed the cat",
+            "checked": false
+        },
+        {
+            "id": 2,
+            "todo": "Clean the floors",
+            "checked": false
+        },
+        {
+            "id": 3,
+            "todo": "Take out the bins",
+            "checked": false
+        }
+    ]
 }
