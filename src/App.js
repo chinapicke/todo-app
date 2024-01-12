@@ -12,6 +12,8 @@ function App() {
 
   const APIUrl = 'http://localhost:3500/list'
 
+
+// request API to display data in the json object 
   const getURL = async()=>{
     try{
       const response = await axios.get(APIUrl);
@@ -62,11 +64,19 @@ getURL()
     handleAddTodo(input);
   }
 
-  const handleDelete = (id) =>{
+  const handleDelete = async (id) =>{
    const removeSelected = list.filter((task)=>{
     return task.id !== id
    })
    setList(removeSelected)
+
+   const deleteOptions= {
+    method:'DELETE',                       
+  }
+  // this identifys which id row has to be deleted
+  const requestURL = `${APIUrl}/${id}`;
+  const result = await APIrequest(requestURL, deleteOptions)
+  if (result) setError(result)
   }
 
   const handleChecked = async (id)=>{
