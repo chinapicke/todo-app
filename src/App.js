@@ -1,12 +1,33 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ToDoRow from './ToDoRow';
-import List from './Data/List.json'
+import axios from 'axios';
 
 function App() {
 
   const [input, setInput] = useState('')
-  const [list, setList] = useState([...List])
+  const [list, setList] = useState([])
+  const [error, setError]= useState(null)
+
+  const APIUrl = 'http://localhost:3002/list'
+
+  const getURL = async()=>{
+    try{
+      const response = await axios.get(APIUrl);
+      // if (!response.ok) {throw Error('Did not recieve expected data');         
+      const data = await response.data;
+      setList(data)
+      setError(null)
+    }
+    catch(err){
+      setError(err.message)
+    }
+
+  }
+
+  useEffect(()=>{
+getURL()
+  },[])
 
   const handleChange=(e)=>{
     setInput(e);
@@ -64,6 +85,8 @@ function App() {
         </form>
       </div>
       <div className='listOfTodos'>
+        {!list.length && !error ? <h1>Your list is empty.</h1>:null}
+        {error && <h1>Error:{`${error}`}</h1>}
         {list.map((item)=>{
           return(
             <ToDoRow key={item.id}todo={item.todo} checked={item.checked} handleDelete={()=>handleDelete(item.id)} handleChecked={()=>handleChecked(item.id)}/>
