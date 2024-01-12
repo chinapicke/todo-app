@@ -1,19 +1,24 @@
 {
-    "list": [
-        {
-            "id": 1,
-            "todo": "Feed the cat",
-            "checked": false
-        },
-        {
-            "id": 2,
-            "todo": "Clean the floors",
-            "checked": false
-        },
-        {
-            "id": 3,
-            "todo": "Take out the bins",
-            "checked": false
-        }
-    ]
+  "list": [
+    {
+      "id": 1,
+      "todo": "Feed the cat",
+      "checked": false
+    },
+    {
+      "id": 2,
+      "todo": "Clean the floors",
+      "checked": false
+    },
+    {
+      "id": 3,
+      "todo": "Take out the bins",
+      "checked": false
+    },
+    {
+      "id": 4,
+      "todo": "Eat out",
+      "checked": false
+    }
+  ]
 }

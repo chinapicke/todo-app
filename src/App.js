@@ -2,6 +2,7 @@ import './App.css';
 import { useState, useEffect } from 'react';
 import ToDoRow from './ToDoRow';
 import axios from 'axios';
+import APIrequest from './APIrequest';
 
 function App() {
 
@@ -9,7 +10,7 @@ function App() {
   const [list, setList] = useState([])
   const [error, setError]= useState(null)
 
-  const APIUrl = 'http://localhost:3002/list'
+  const APIUrl = 'http://localhost:3500/list'
 
   const getURL = async()=>{
     try{
@@ -33,11 +34,21 @@ getURL()
     setInput(e);
   }
 
-  const handleAddTodo = (input) =>{
+  const handleAddTodo = async (input) =>{
         // check if there is length to list item, if there is then set it to a number next in the succession or define it as 1 
     const id = list.length? list[list.length - 1].id + 1 : 1;
     const newTodo = {id, todo:input, checked:false}
+    console.log(newTodo)
     setList([...list, newTodo])
+
+    const postOptions= {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(newTodo)
+    }
+
+    const result = await APIrequest(APIUrl, postOptions)
+    if (result) setError(result)
   }
 
   const handleSubmit = (e)=>{
