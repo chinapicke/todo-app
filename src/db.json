@@ -1,19 +1,19 @@
 {
-    "list": [
-        {
-            "id": 1,
-            "todo": "Feed the cat",
-            "checked": false
-        },
-        {
-            "id": 2,
-            "todo": "Clean the floors",
-            "checked": false
-        },
-        {
-            "id": 3,
-            "todo": "Take out the bins",
-            "checked": false
-        }
-    ]
+  "list": [
+    {
+      "id": "1",
+      "todo": "Oil the bike chain.",
+      "checked": false
+    },
+    {
+      "id": "2",
+      "todo": "Renew gym membership.",
+      "checked": false
+    },
+    {
+      "id": "3",
+      "todo": "Remember to put on the washing and hang it up to dry.",
+      "checked": false
+    }
+  ]
 }
